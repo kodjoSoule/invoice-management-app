@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	List of Invoice Lines
+{% endblock %}
+
+{% block body %}
+	<div class="container">
+		<div class="row">
+			<div class="col-8 mx-auto">
+				<h1>
+					List of Invoice Lines
+					<span class="float-right">
+						<a href="{{ path('app_invoice_line_store') }}" class="btn btn-primary">Create</a>
+					</span>
+				</h1>
+				<div class="bg-secondary  p-1 ">
+					{% if invoiceLines is empty %}
+						<p>No invoice lines found</p>
+					{% else %}
+						{% for invoiceLine in invoiceLines %}
+							<p class="bg-light p-2 mb-2 shadow-sm">
+								Description :
+								{{ invoiceLine.description }}
+								<br/>
+
+								Quantite :
+								{{ invoiceLine.quantity }}
+								<br/>
+
+								Amount :
+								{{ invoiceLine.amount }}
+								<br/>
+								Vat Amount :
+								{{ invoiceLine.vatamount }}
+								<br/>
+								Total with VAT :
+								{{ invoiceLine.totalvat }}
+
+							</p>
+						{% endfor %}
+					{% endif %}
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}
